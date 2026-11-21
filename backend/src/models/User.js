@@ -62,7 +62,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["student", "admin"],
       default: "student"
-    }
+    },
+    
+    isBlocked: {
+  type: Boolean,
+  default: false
+}
   },
   {
     timestamps: true

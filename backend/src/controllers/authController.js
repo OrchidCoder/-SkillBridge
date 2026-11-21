@@ -97,6 +97,12 @@ const loginUser = async (req, res) => {
         message: "Invalid email or password"
       });
     }
+    if (user.isBlocked) {
+  return res.status(403).json({
+    success: false,
+    message: "Your account has been blocked. Please contact the administrator."
+  });
+}
 
     const token = generateToken(user._id);
 

@@ -4,15 +4,19 @@ const router = express.Router();
 
 const {
   getMyProfile,
-  updateMyProfile
+  updateMyProfile,
+  getAllStudents
 } = require("../controllers/userController");
 
 const { protect } = require("../middlewares/authMiddleware");
 
-// Get profile
+// Get all registered students
+router.get("/students", protect, getAllStudents);
+
+// Get logged-in student's profile
 router.get("/profile", protect, getMyProfile);
 
-// Update profile
+// Update logged-in student's profile
 router.put("/profile", protect, updateMyProfile);
 
 module.exports = router;

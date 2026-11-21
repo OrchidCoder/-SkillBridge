@@ -105,7 +105,31 @@ const updateMyProfile = async (req, res) => {
   }
 };
 
+// Get all students for the student directory
+const getAllStudents = async (req, res) => {
+  try {
+    const students = await User.find({
+      _id: { $ne: req.user._id },
+      role: "student"
+    })
+      .select("name email university course year bio skillsToTeach skillsToLearn credits createdAt")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      count: students.length,
+      students
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
+
 module.exports = {
   getMyProfile,
-  updateMyProfile
+  updateMyProfile,
+  getAllStudents
 };

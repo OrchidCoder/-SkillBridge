@@ -13,6 +13,8 @@ const userRoutes = require("./src/routes/userRoutes");
 const skillRoutes = require("./src/routes/skillRoutes");
 const requestRoutes = require("./src/routes/requestRoutes");
 const dashboardRoutes = require("./src/routes/dashboardRoutes");
+const questRoutes = require("./src/routes/questRoutes");
+const adminRoutes = require("./src/routes/adminRoutes");
 
 const app = express();
 
@@ -48,6 +50,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/requests", requestRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/quests", questRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check
 app.get("/", (req, res) => {
