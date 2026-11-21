@@ -545,6 +545,14 @@ const loadMySessions = useCallback(async () => {
   }
 }, []);
 
+  // Automatically load requests when My Sessions opens
+  useEffect(() => {
+    if (!token || activePage !== "My Sessions") return;
+
+    void loadMySessions();
+  }, [token, activePage, loadMySessions]);
+
+
   // Load dashboard after login
   useEffect(() => {
     if (!token) return;
